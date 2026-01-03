@@ -34,7 +34,8 @@ const BigCard = ({
     icon,
     stat1,
     stat2,
-    url
+    url,
+    target
 }: {
     badge: string;
     title: string;
@@ -44,6 +45,7 @@ const BigCard = ({
     stat1: { label: string; value: string };
     stat2: { label: string; value: string };
     url: string;
+    target: string;
 }) => {
     return (
         <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_90px_-70px_rgba(2,6,23,0.35)]">
@@ -85,7 +87,13 @@ const BigCard = ({
                         type="button"
                         className="grid h-11 w-11 place-items-center rounded-full bg-slate-100 text-slate-700 shadow-sm transition group-hover:bg-blue-600 group-hover:text-white"
                         aria-label="Go"
-                        onClick={() => { window.location.href = url; }}
+                        onClick={() => {
+                            if (target === "_blank") {
+                                window.open(url, "_blank");
+                            } else {
+                                window.location.href = url;
+                            }
+                        }}
                     >
                         <ArrowRight className="h-5 w-5" />
                     </button>
@@ -157,7 +165,8 @@ export default function RefundStatusPage() {
                             icon={<Clock3 className="h-7 w-7" />}
                             stat1={{ label: "Processing Time", value: "21 days" }}
                             stat2={{ label: "E-file Returns", value: "Faster" }}
-                            url="/refund-status/federal-refunds"
+                            url="https://www.irs.gov/refunds"
+                            target="_blank"
                         />
 
                         <BigCard
@@ -169,6 +178,7 @@ export default function RefundStatusPage() {
                             stat1={{ label: "Varies by State", value: "Check yours" }}
                             stat2={{ label: "Average Time", value: "2-4 weeks" }}
                             url="/refund-status/state-refunds"
+                            target="_self"
                         />
                     </div>
 
