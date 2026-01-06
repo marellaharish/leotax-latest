@@ -10,6 +10,7 @@ import {
     ShieldCheck,
     Zap,
 } from "lucide-react";
+import LionStrokeAnimation from "./LionStrokeAnimation";
 
 type OfferCard = {
     iconBg: string;
@@ -135,11 +136,11 @@ export default function ServicesShowcase() {
             {/* subtle top wash like screenshot */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(55%_60%_at_50%_0%,rgba(16,185,129,0.14)_0%,rgba(16,185,129,0)_55%)]" />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(40%_55%_at_85%_15%,rgba(99,102,241,0.12)_0%,rgba(99,102,241,0)_60%)]" />
-
             <div className="relative mx-auto max-w-6xl px-4 py-14 md:py-20">
                 {/* Top: What we offer + two cards */}
                 <div className="grid items-start gap-8 md:grid-cols-[1.25fr_1fr]">
                     <div>
+
                         <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-extrabold text-emerald-700 ring-1 ring-emerald-100">
                             <span className="grid h-6 w-6 place-items-center rounded-full bg-emerald-500 text-white shadow-sm">
                                 <Sparkles className="h-4 w-4" />
@@ -156,22 +157,25 @@ export default function ServicesShowcase() {
                                 tax advisory partner
                             </span>
                         </h2>
+                        <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 relative mt-4">
+                            {offerCards.map((c, idx) => (
+                                <div
+                                    key={idx}
+                                    className="rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_20px_55px_-40px_rgba(2,6,23,0.25)]"
+                                >
+                                    <div
+                                        className={`mb-4 grid h-10 w-10 place-items-center rounded-2xl ${c.iconBg}`}
+                                    >
+                                        {c.icon}
+                                    </div>
+                                    <p className="text-sm leading-6 text-slate-600">{c.text}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-                        {offerCards.map((c, idx) => (
-                            <div
-                                key={idx}
-                                className="rounded-2xl border border-slate-100 bg-white p-5 shadow-[0_20px_55px_-40px_rgba(2,6,23,0.25)]"
-                            >
-                                <div
-                                    className={`mb-4 grid h-10 w-10 place-items-center rounded-2xl ${c.iconBg}`}
-                                >
-                                    {c.icon}
-                                </div>
-                                <p className="text-sm leading-6 text-slate-600">{c.text}</p>
-                            </div>
-                        ))}
+                    <div className="h-full flex items-center justify-center">
+                        <LionStrokeAnimation />
                     </div>
                 </div>
 
@@ -248,7 +252,7 @@ export default function ServicesShowcase() {
                     </h4>
 
                     <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-500">
-                        With Grow Tax Filing, tax filing becomes effortless. We bring you accuracy, peace of
+                        With Leo Tax Filing, tax filing becomes effortless. We bring you accuracy, peace of
                         mind, and expert guidance so you'll never feel uncertain during the process.
                     </p>
 
@@ -269,7 +273,7 @@ export default function ServicesShowcase() {
                             iconBg="bg-indigo-500 text-white"
                             icon={<ShieldCheck className="h-5 w-5" />}
                             title="Trusted by Thousands"
-                            desc="Grow Tax Filing has been trusted by thousands of individuals and businesses across the country for our exceptional customer service."
+                            desc="Leo Tax Filing has been trusted by thousands of individuals and businesses across the country for our exceptional customer service."
                         />
                     </div>
 

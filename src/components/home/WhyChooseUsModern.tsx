@@ -78,7 +78,7 @@ export default function WhyChooseUsModern() {
 
                     <div className="mt-6 flex flex-wrap items-center gap-3">
                         <a
-                            href="/get-started"
+                            href="/signup"
                             className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_35px_-22px_rgba(79,70,229,0.75)] hover:brightness-110"
                         >
                             Get Started

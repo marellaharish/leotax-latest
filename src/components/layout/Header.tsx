@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
     Phone,
     Mail,
@@ -12,10 +12,117 @@ import {
     ChevronDown,
     Menu,
     X,
+    BadgeHelp,
+    ClipboardList,
+    DollarSign,
+    Scale,
+    ShieldAlert,
+    FileCheck2,
+    Calculator,
+    Receipt,
 } from "lucide-react";
+
+
+type ServiceItem = {
+    title: string;
+    desc: string;
+    slug: string; // routes: /service/:slug
+    icon: React.ReactNode;
+};
+
+const SERVICE_ITEMS: ServiceItem[] = [
+    {
+        title: "1040 & 1040 NR Tax Return Filing",
+        desc: "Individual and nonresident tax return preparation",
+        slug: "1040-1040nr-tax-return-filing",
+        icon: <FileText className="h-5 w-5" />,
+    },
+    {
+        title: "Unlimited Tax Consultations",
+        desc: "Get answers and guidance from tax professionals",
+        slug: "unlimited-tax-consultations",
+        icon: <BadgeHelp className="h-5 w-5" />,
+    },
+    {
+        title: "Form 4868 Extension Filing",
+        desc: "Tax filing deadline extension support",
+        slug: "form-4868-extension-filing",
+        icon: <ClipboardList className="h-5 w-5" />,
+    },
+    {
+        title: "ITIN Guidance and Support (Form W-7)",
+        desc: "Individual Taxpayer Identification Number applications",
+        slug: "itin-guidance-and-support",
+        icon: <FileText className="h-5 w-5" />,
+    },
+    {
+        title: "FICA Taxes Withdrawals Guidance",
+        desc: "Assistance for FICA-related withdrawals and compliance",
+        slug: "fica-taxes-withdrawals-guidance",
+        icon: <DollarSign className="h-5 w-5" />,
+    },
+    {
+        title: "Professional Tax Planning",
+        desc: "Strategic tax optimization and planning services",
+        slug: "professional-tax-planning",
+        icon: <Scale className="h-5 w-5" />,
+    },
+    {
+        title: "Tax Expert Support for Notices, Audits & Enquiries",
+        desc: "Help responding to IRS/state notices and audit support",
+        slug: "notices-audits-enquiries-support",
+        icon: <ShieldAlert className="h-5 w-5" />,
+    },
+    {
+        title: "Filed Tax Returns Assessment & Examination",
+        desc: "Review and assessment of previously filed returns",
+        slug: "filed-tax-returns-assessment-examination",
+        icon: <FileCheck2 className="h-5 w-5" />,
+    },
+    {
+        title: "Accurate Tax Estimates",
+        desc: "Estimate liabilities/refunds with better accuracy",
+        slug: "accurate-tax-estimates",
+        icon: <Calculator className="h-5 w-5" />,
+    },
+    {
+        title: "FBAR & FATCA Filing",
+        desc: "Foreign account reporting compliance support",
+        slug: "fbar-fatca-filing",
+        icon: <Receipt className="h-5 w-5" />,
+    },
+    {
+        title: "W4 Assistance",
+        desc: "Withholding allowance certificate help",
+        slug: "w4-assistance",
+        icon: <FileText className="h-5 w-5" />,
+    },
+];
+
 
 const Header = () => {
     const [open, setOpen] = React.useState(false);
+    const [servicesOpen, setServicesOpen] = React.useState(false); // desktop dropdown
+    const servicesRef = React.useRef<HTMLDivElement | null>(null);
+    const location = useLocation();
+
+
+    // Close dropdowns on route change
+    React.useEffect(() => {
+        setServicesOpen(false);
+        setOpen(false);
+    }, [location.pathname]);
+
+    // Click outside to close services dropdown
+    React.useEffect(() => {
+        const onDown = (e: MouseEvent) => {
+            if (!servicesRef.current) return;
+            if (!servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
+        };
+        document.addEventListener("mousedown", onDown);
+        return () => document.removeEventListener("mousedown", onDown);
+    }, []);
+
 
     return (
         <header className="w-full">
@@ -24,18 +131,18 @@ const Header = () => {
                 <div className="mx-auto flex h-11 max-w-7xl items-center justify-between px-4">
                     <div className="flex items-center gap-6 text-sm">
                         <a
-                            href="tel:+13202245557"
+                            href="tel:+12393192127"
                             className="flex items-center gap-2 text-white/90 hover:text-white"
                         >
                             <Phone className="h-4 w-4" />
-                            <span>+1 320 224 5557</span>
+                            <span>+1 239 319 2127</span>
                         </a>
                         <a
-                            href="mailto:legal@growtaxfiling.com"
+                            href="mailto:contact@leotaxfiling.com"
                             className="hidden items-center gap-2 text-white/90 hover:text-white sm:flex"
                         >
                             <Mail className="h-4 w-4" />
-                            <span>legal@Growtaxfiling.com</span>
+                            <span>contact@leotaxfiling.com</span>
                         </a>
                     </div>
 
@@ -138,32 +245,37 @@ const Header = () => {
                                 <ChevronDown className="h-4 w-4 text-slate-500 transition-transform group-hover:rotate-180" />
                             </button>
 
-                            <div className="invisible absolute left-0 top-[46px] z-50 w-[260px] translate-y-2 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                            <div className="invisible absolute left-0 top-[46px] z-50 w-[400px] translate-y-2 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                                 <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-xl">
-                                    <NavLink
-                                        to="/services/individual"
-                                        className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Individual Tax Filing
-                                    </NavLink>
-                                    <NavLink
-                                        to="/services/business"
-                                        className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Business Tax Filing
-                                    </NavLink>
-                                    <NavLink
-                                        to="/services/itin"
-                                        className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        ITIN Services
-                                    </NavLink>
-                                    <NavLink
-                                        to="/services/amendment"
-                                        className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Amendment / Correction
-                                    </NavLink>
+                                    {SERVICE_ITEMS.map((s, idx) => (
+                                        <NavLink
+                                            key={s.slug}
+                                            to={`/service/${s.slug}`}
+                                            className={({ isActive }) => {
+                                                const base =
+                                                    "group flex items-start gap-4 rounded-2xl px-3 py-2 transition";
+                                                const active =
+                                                    "bg-[#eef6ff] shadow-[inset_0_0_0_1px_rgba(37,99,235,0.18)]";
+                                                const hover = "hover:bg-slate-50";
+                                                // screenshot shows first item highlighted
+                                                const firstDefault = idx === 0 ? "bg-[#eef6ff]" : "";
+                                                return `${base} ${isActive ? active : `${hover}`}`;
+                                            }}
+                                            onClick={() => setServicesOpen(false)}
+                                        >
+                                            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#dbeafe] text-[#2563eb]">
+                                                {s.icon}
+                                            </div>
+                                            <div className="min-w-0">
+                                                <div className="truncate text-[14px] font-extrabold leading-snug text-[#2563eb] group-hover:text-[#1d4ed8]">
+                                                    {s.title}
+                                                </div>
+                                                <div className="mt-1 text-[12px] leading-snug text-slate-600">
+                                                    {s.desc}
+                                                </div>
+                                            </div>
+                                        </NavLink>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -178,7 +290,7 @@ const Header = () => {
                             Sign In
                         </a>
                         <a
-                            href="/get-started"
+                            href="/signup"
                             className="rounded-xl bg-[#2563eb] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_24px_-14px_rgba(37,99,235,0.8)] hover:brightness-110"
                         >
                             Get Started
@@ -235,30 +347,16 @@ const Header = () => {
                                     Services
                                 </div>
                                 <div className="grid gap-1">
-                                    <a
-                                        href="/services/individual"
-                                        className="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Individual Tax Filing
-                                    </a>
-                                    <a
-                                        href="/services/business"
-                                        className="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Business Tax Filing
-                                    </a>
-                                    <a
-                                        href="/services/itin"
-                                        className="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        ITIN Services
-                                    </a>
-                                    <a
-                                        href="/services/amendment"
-                                        className="rounded-xl px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                                    >
-                                        Amendment / Correction
-                                    </a>
+                                    {SERVICE_ITEMS.map((s, idx) => (
+                                        <NavLink
+                                            key={s.slug}
+                                            to={`/service/${s.slug}`}
+                                            className={`rounded-xl px-3 py-3 text-sm font-extrabold text-slate-900 hover:bg-slate-50 ${idx === 1 ? "bg-slate-100" : ""
+                                                }`}
+                                        >
+                                            {s.title}
+                                        </NavLink>
+                                    ))}
                                 </div>
                             </div>
 
@@ -270,7 +368,7 @@ const Header = () => {
                                     Sign In
                                 </a>
                                 <a
-                                    href="/get-started"
+                                    href="/signup"
                                     className="rounded-xl bg-[#2563eb] px-4 py-3 text-center text-sm font-extrabold text-white hover:brightness-110"
                                 >
                                     Get Started

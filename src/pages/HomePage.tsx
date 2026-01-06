@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import PricingAndPaymentSection from "@/components/home/PricingAndPaymentSection";
 import WhyChooseUsModern from "@/components/home/WhyChooseUsModern";
 import FAQSection from "@/components/home/FAQSection";
+import LionStrokeAnimation from "@/components/home/LionStrokeAnimation";
 
 const HomePage = () => {
     return (

@@ -196,7 +196,7 @@ export default function AboutUs() {
                             </h2>
                             <p className="mt-4 text-base leading-relaxed text-slate-600">
                                 International filing can be confusing—residency tests, treaties, multiple forms, timelines.
-                                We built Grow Tax Filing to deliver a calm, guided experience with accurate outcomes.
+                                We built Leo Tax Filing to deliver a calm, guided experience with accurate outcomes.
                             </p>
                             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                                 <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -375,7 +375,7 @@ export default function AboutUs() {
                         </div>
 
                         <p className="mt-6 text-center text-xs text-white/50">
-                            © {new Date().getFullYear()} Grow Tax Filing — Privacy-first • Clear process • Human support
+                            © {new Date().getFullYear()} Leo Tax Filing — Privacy-first • Clear process • Human support
                         </p>
                     </div>
                 </section>
