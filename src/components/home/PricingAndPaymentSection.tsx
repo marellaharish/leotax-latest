@@ -14,6 +14,7 @@ import {
     Receipt,
     Landmark,
 } from "lucide-react";
+import { AE, MaserCard, Paypal, Visa, Zelle } from "@/assets";
 
 type Feature = {
     icon: React.ReactNode;
@@ -28,7 +29,7 @@ type Plan = {
     note: string;
 };
 
-const acceptedMethods = ["VISA", "MasterCard", "PayPal"];
+const acceptedMethods = ["VISA", "AMEX", "MaserCard", "Zelle", "PayPal"];
 
 const leftFeatures: Feature[] = [
     { icon: <Timer className="h-4 w-4" />, text: "Instant payment processing" },
@@ -129,7 +130,14 @@ export default function PricingAndPaymentSection() {
 
                             <div className="mt-4 flex flex-wrap gap-3">
                                 {acceptedMethods.map((m) => (
-                                    <MethodChip key={m} label={m} />
+                                    <>
+                                        {m === "VISA" && <img src={Visa} alt="" className="h-[80px] w-auto" />}
+                                        {m === "AMEX" && <img src={AE} alt="" className="h-[60px] w-auto" />}
+                                        {m === "MaserCard" && <img src={MaserCard} alt="" className="h-[60px] w-auto" />}
+                                        {m === "PayPal" && <img src={Paypal} alt="" className="h-[60px] w-auto" />}
+                                        {m === "Zelle" && <img src={Zelle} alt="" className="h-[80px] w-auto" />}
+                                    </>
+
                                 ))}
                             </div>
 
@@ -139,7 +147,7 @@ export default function PricingAndPaymentSection() {
                                 ))}
                             </div>
 
-                            <div className="mt-6 flex items-center gap-3 text-xs font-semibold text-slate-600">
+                            {/* <div className="mt-6 flex items-center gap-3 text-xs font-semibold text-slate-600">
                                 <span className="grid h-7 w-7 place-items-center rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100">
                                     <BadgeCheck className="h-4 w-4" />
                                 </span>
@@ -147,13 +155,13 @@ export default function PricingAndPaymentSection() {
                                     <div className="font-extrabold text-slate-700">Bank-Grade Security</div>
                                     <div className="text-slate-500">256-bit SSL Encryption</div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* right payment card */}
                         <div className="relative">
                             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_20px_55px_-45px_rgba(2,6,23,0.35)]">
-                                <div className="text-right">
+                                {/* <div className="text-right">
                                     <div className="text-3xl font-extrabold tracking-tight text-slate-900">
                                         $299{" "}
                                         <span className="ml-2 align-middle text-sm font-bold text-slate-400 line-through">
@@ -166,30 +174,25 @@ export default function PricingAndPaymentSection() {
                                 <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-extrabold text-emerald-700 ring-1 ring-emerald-100">
                                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
                                     LIMITED TIME - 40% OFF
-                                </div>
+                                </div> */}
 
                                 <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-extrabold text-white shadow-[0_14px_30px_-18px_rgba(37,99,235,0.85)] hover:brightness-110">
                                     <Lock className="h-4 w-4" />
                                     PAY SECURELY NOW
                                 </button>
 
-                                <div className="mt-4 flex items-center justify-center gap-2">
-                                    <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-[10px] font-extrabold text-slate-700">
-                                        VISA
-                                    </span>
-                                    <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-[10px] font-extrabold text-slate-700">
-                                        MC
-                                    </span>
-                                    <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-1 text-[10px] font-extrabold text-slate-700">
-                                        PayPal
-                                    </span>
-                                </div>
 
                                 <div className="mt-4 flex items-center justify-center gap-2 text-[11px] font-semibold text-slate-500">
                                     <CreditCard className="h-4 w-4 text-emerald-600" />
                                     Protected by advanced encryption
                                 </div>
+                                <p className="text-[11px] text-center mt-2 text-slate-400">
+                                    All types of credit and debit cards are accepted.
+                                </p>
                             </div>
+                            <p className="text-[11px] text-center mt-2 text-slate-600 fw-medium">
+                                Refund and cancellation policy: We promptly process payment cancellations and approve refund requests.
+                            </p>
                         </div>
                     </div>
 
@@ -199,6 +202,7 @@ export default function PricingAndPaymentSection() {
                     {/* Pricing plans */}
                     <div className="px-6 py-10 md:px-10">
                         <div className="text-center">
+
                             <h4 className="text-xl font-extrabold tracking-tight text-slate-900 md:text-2xl">
                                 Service Pricing Plans
                             </h4>

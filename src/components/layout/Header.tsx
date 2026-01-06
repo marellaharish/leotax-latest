@@ -21,6 +21,7 @@ import {
     Calculator,
     Receipt,
 } from "lucide-react";
+import { LeoLogo } from "@/assets";
 
 
 type ServiceItem = {
@@ -149,11 +150,11 @@ const Header = () => {
                     <div className="flex items-center gap-3">
                         <div className="hidden items-center gap-2 rounded-full bg-[#1d4ed8] px-4 py-1.5 text-xs font-semibold sm:flex">
                             <CheckCircle2 className="h-4 w-4" />
-                            <span>Licensed Tax Professionals</span>
+                            <span>Certified Tax Experts</span>
                         </div>
-                        <div className="hidden text-xs text-white/80 md:block">
+                        {/* <div className="hidden text-xs text-white/80 md:block">
                             Mon-Fri: 9AM-6PM EST
-                        </div>
+                        </div> */}
 
                         {/* Mobile: show hours compact */}
                         <div className="text-xs text-white/80 md:hidden">Mon-Fri: 9AM-6PM</div>
@@ -162,22 +163,12 @@ const Header = () => {
             </div>
 
             {/* Main nav */}
-            <div className="w-full bg-white shadow-[0_6px_24px_-18px_rgba(15,23,42,0.35)]">
-                <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4">
+            <div className="sticky top-0 z-50 w-full bg-white shadow-[0_6px_24px_-18px_rgba(15,23,42,0.35)]">
+                <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sticky top-0 z-50">
                     {/* Brand */}
                     <a href="/" className="flex items-center gap-3">
                         {/* Replace this block with your real logo image */}
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#0ea5e9]/10">
-                            <span className="text-sm font-extrabold text-[#0ea5e9]">LT</span>
-                        </div>
-                        <div className="leading-tight">
-                            <div className="text-lg font-extrabold tracking-tight text-[#0f172a]">
-                                Leo
-                            </div>
-                            <div className="-mt-0.5 text-xs font-semibold text-slate-600">
-                                Tax Filing
-                            </div>
-                        </div>
+                        <img src={LeoLogo} alt="LeoTaxFiling Logo" className="h-12 w-auto" />
                     </a>
 
                     {/* Desktop links */}
@@ -378,11 +369,11 @@ const Header = () => {
                             <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-600">
                                 <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1.5">
                                     <CheckCircle2 className="h-4 w-4 text-[#2563eb]" />
-                                    Licensed Tax Professionals
+                                    Certified Tax Experts
                                 </span>
-                                <span className="rounded-full bg-slate-100 px-3 py-1.5">
+                                {/* <span className="rounded-full bg-slate-100 px-3 py-1.5">
                                     Mon-Fri: 9AM-6PM EST
-                                </span>
+                                </span> */}
                             </div>
                         </div>
                     </div>

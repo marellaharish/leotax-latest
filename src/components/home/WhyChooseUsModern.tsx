@@ -1,5 +1,6 @@
 import React from "react";
 import { Zap, ShieldCheck, Users, ArrowUpRight } from "lucide-react";
+import { WhyChooseUs1, WhyChooseUs2 } from "@/assets";
 
 type Point = {
     icon: React.ReactNode;
@@ -51,7 +52,7 @@ export default function WhyChooseUsModern() {
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_20%_15%,rgba(16,185,129,0.12)_0%,rgba(16,185,129,0)_60%)]" />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_85%_80%,rgba(99,102,241,0.12)_0%,rgba(99,102,241,0)_60%)]" />
 
-            <div className="relative mx-auto grid max-w-6xl items-start gap-10 px-4 md:grid-cols-2 md:gap-12">
+            <div className="relative mx-auto grid max-w-6xl content-center items-start gap-10 px-4 md:grid-cols-2 md:gap-12">
                 {/* Left content */}
                 <div>
                     <Pill>Why Choose Us</Pill>
@@ -94,33 +95,35 @@ export default function WhyChooseUsModern() {
                 </div>
 
                 {/* Right images (modern overlapping cards) */}
-                <div className="relative">
-                    <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl" />
+                <div className="flex h-full w-full items-center justify-center">
+                    <div className="relative ">
+                        <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl" />
 
-                    {/* big image */}
-                    <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_35px_110px_-85px_rgba(2,6,23,0.55)]">
-                        <img
-                            src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1400&q=80"
-                            alt="Tax experts working"
-                            className="h-[340px] w-full object-cover md:h-[420px]"
-                            draggable={false}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                        {/* big image */}
+                        <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_35px_110px_-85px_rgba(2,6,23,0.55)]">
+                            <img
+                                src={WhyChooseUs1}
+                                alt="Tax experts working"
+                                className="h-[340px] w-full object-cover md:h-[420px]"
+                                draggable={false}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                        </div>
+
+                        {/* floating image card */}
+                        <div className="absolute -bottom-8 left-6 w-[78%] overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_30px_90px_-70px_rgba(2,6,23,0.65)] md:left-10 md:w-[72%]">
+                            <img
+                                src={WhyChooseUs2}
+                                alt="Consultation"
+                                className="h-[210px] w-full object-cover md:h-[240px]"
+                                draggable={false}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                        </div>
+
+                        {/* spacer for absolute card */}
+                        <div className="h-16 md:h-20" />
                     </div>
-
-                    {/* floating image card */}
-                    <div className="absolute -bottom-8 left-6 w-[78%] overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_30px_90px_-70px_rgba(2,6,23,0.65)] md:left-10 md:w-[72%]">
-                        <img
-                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
-                            alt="Consultation"
-                            className="h-[210px] w-full object-cover md:h-[240px]"
-                            draggable={false}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
-                    </div>
-
-                    {/* spacer for absolute card */}
-                    <div className="h-16 md:h-20" />
                 </div>
             </div>
         </section>

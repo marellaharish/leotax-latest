@@ -19,7 +19,6 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/refund-status" element={<RefundStatusPage />} />
         <Route path="/refund-status/state-refunds" element={<StateRefundListPage />} />
-        <Route path="/services" element={<ServicesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/service/:slug" element={<ServiceDetails />} />
 

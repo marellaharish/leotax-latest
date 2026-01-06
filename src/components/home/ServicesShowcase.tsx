@@ -11,6 +11,7 @@ import {
     Zap,
 } from "lucide-react";
 import LionStrokeAnimation from "./LionStrokeAnimation";
+import { service1, service2, service3, service4, service5, service6, service7, service8, service9 } from "@/assets";
 
 type OfferCard = {
     iconBg: string;
@@ -31,68 +32,63 @@ const offerCards: OfferCard[] = [
     {
         iconBg: "bg-emerald-100 text-emerald-700",
         icon: <FileText className="h-5 w-5" />,
-        text: "Expert tax professionals with extensive industry knowledge provide comprehensive services for your financial future.",
+        text: "Seasoned tax specialists deliver well-rounded advisory services designed to support your long-term financial goals.",
     },
     {
         iconBg: "bg-indigo-100 text-indigo-700",
         icon: <LineChart className="h-5 w-5" />,
-        text: "Proactive tax consultation and strategic planning to stay ahead of regulatory changes and minimize compliance issues.",
+        text: "Forward-thinking tax guidance and structured planning to adapt smoothly to evolving regulations while reducing compliance risks.",
     },
+
 ];
 
 const services: ServiceCard[] = [
     {
         no: "01",
         noBg: "bg-indigo-600",
-        title: "Unlimited Tax Consultations",
-        desc: "Comprehensive consultation services covering all tax compliance and planning aspects with expert guidance.",
-        image:
-            "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1200&q=70",
+        title: "1040 & 1040 NR Tax Return Filing",
+        desc: "Individual and nonresident tax return preparation",
+        image: service1,
         cornerIcon: <ClipboardCheck className="h-4 w-4 text-white/90" />,
     },
     {
         no: "02",
         noBg: "bg-emerald-600",
-        title: "Form 4868 Extension Filing",
-        desc: "Seamless handling of extension requests beyond April 15th deadline with proper documentation.",
-        image:
-            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=70",
+        title: "Unlimited Tax Consultations",
+        desc: "Get answers and guidance from tax professionals",
+        image: service2,
         cornerIcon: <FileText className="h-4 w-4 text-white/90" />,
     },
     {
         no: "03",
         noBg: "bg-purple-600",
-        title: "ITIN Guidance and Support",
-        desc: "Complete support for Individual Taxpayer Identification Number applications and compliance.",
-        image:
-            "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=70",
+        title: "Form 4868 Extension Filing",
+        desc: "Tax filing deadline extension support",
+        image: service3,
         cornerIcon: <UserRound className="h-4 w-4 text-white/90" />,
     },
     {
         no: "04",
         noBg: "bg-orange-600",
-        title: "Professional Tax Planning",
-        desc: "Strategic tax planning to optimize your financial position and minimize tax liabilities.",
-        image:
-            "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=70",
+        title: "ITIN Guidance and Support (Form W-7)",
+        desc: "Individual Taxpayer Identification Number applications",
+        image: service4,
         cornerIcon: <ArrowUpRight className="h-4 w-4 text-white/90" />,
     },
     {
         no: "05",
         noBg: "bg-rose-600",
-        title: "Accurate Tax Estimates",
-        desc: "Precise tax preparation services with meticulous attention to detail and maximum refund potential.",
-        image:
-            "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=70",
+        title: "Filed Tax Returns Assessment & Examination",
+        desc: "Review and assessment of previously filed returns",
+        image: service5,
         cornerIcon: <Users className="h-4 w-4 text-white/90" />,
     },
     {
         no: "06",
         noBg: "bg-sky-600",
-        title: "FBAR & FATCA Filing",
-        desc: "Specialized international tax compliance assistance including foreign asset disclosures.",
-        image:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=70",
+        title: "Professional Tax Planning",
+        desc: "Strategic tax optimization and planning services",
+        image: service6,
         cornerIcon: <ShieldCheck className="h-4 w-4 text-white/90" />,
     },
 ];
@@ -149,14 +145,15 @@ export default function ServicesShowcase() {
                         </div>
 
                         <h2 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight text-slate-900 md:text-5xl">
-                            Experience <br />
-                            excellence in <br />
-                            choosing the{" "}
+                            Discover <br />
+                            confidence in <br />
+                            selecting the{" "}
                             <span className="text-emerald-600">
-                                perfect <br />
-                                tax advisory partner
+                                right <br />
+                                tax advisory team
                             </span>
                         </h2>
+
                         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 relative mt-4">
                             {offerCards.map((c, idx) => (
                                 <div
@@ -238,11 +235,13 @@ export default function ServicesShowcase() {
                 </div>
 
                 {/* stats row */}
-                <div className="mt-12 grid grid-cols-3 gap-6 md:mt-14">
-                    <Stat value="14695+" label="Clients" />
-                    <Stat value="8+" label="Years" />
-                    <Stat value="97.5%" label="Client satisfaction" />
+                <div className="mt-12 grid grid-cols-2 gap-6 md:mt-14 md:grid-cols-4">
+                    <Stat value="28,960+" label="Clients served" />
+                    <Stat value="98%" label="Audit clearance rate" />
+                    <Stat value="12+" label="Years of experience" />
+                    <Stat value="18,650+" label="Reports delivered" />
                 </div>
+
 
                 {/* bottom heading + 3 mini features */}
                 <div className="mt-16 text-center md:mt-20">
