@@ -1,111 +1,158 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { TrendingUp, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
-import { ImagesSlider } from "@/components/aceternity/images-slider";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Slide1, Slide2, Slide3 } from "@/assets";
 
 type Slide = {
     image: string;
-    titleTop: string;
-    titleAccent: string;
+    kicker: string;
+    title: string;
     description: string;
-    pills: string[];
+    cta: string;
 };
 
 const slides: Slide[] = [
     {
         image: Slide2,
-        titleTop: "Expert Financial Growth Solutions",
-        titleAccent: "for Your Success",
+        kicker: "Modern Web site Redesign",
+        title: "Simplify Your Taxes with\nExpert Confidence",
         description:
-            "Transform your financial future with comprehensive tax strategies. Our certified professionals deliver personalized solutions that optimize your tax position while ensuring full compliance.",
-        pills: ["Strategic Planning", "Compliance Assurance", "Growth Optimization"],
+            "Fast, secure, and personalized tax filing services\nfor individuals and businesses.",
+        cta: "Get Started Now",
     },
     {
         image: Slide1,
-        titleTop: "Maximize Refunds & Minimize Stress",
-        titleAccent: "with LeoTaxFiling",
+        kicker: "Trusted Tax Assistance",
+        title: "Maximize Refunds with\nPeace of Mind",
         description:
-            "We help individuals and businesses file with confidence—accurate returns, smart deductions, and proactive planning designed for long-term wins.",
-        pills: ["Refund Support", "Audit Ready", "Year-Round Guidance"],
+            "Accurate returns, smart deductions, and year-round\nguidance for long-term wins.",
+        cta: "Get Started Now",
     },
     {
         image: Slide3,
-        titleTop: "Business Tax & Bookkeeping",
-        titleAccent: "done the Right Way",
-        description:
-            "From LLCs to corporations, we streamline compliance and reporting. Keep your books clean and your business prepared—without the headaches.",
-        pills: ["Business Returns", "Bookkeeping", "Quarterly Estimates"],
+        kicker: "Business Services",
+        title: "Business Tax & Bookkeeping\nMade Simple",
+        description: "Streamlined compliance and clean books—without\nthe headaches.",
+        cta: "Get Started Now",
     },
 ];
 
-const Pill: React.FC<{ text: string }> = ({ text }) => (
-    <span className="inline-flex items-center gap-2 rounded-full bg-black/40 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md ring-1 ring-white/10">
-        <CheckCircle2 className="h-4 w-4 text-[#2563eb]" />
-        {text}
-    </span>
-);
-
 export default function HeroCarousel() {
-    const [currentSlide, setCurrentSlide] = React.useState(0);
+    const [current, setCurrent] = React.useState(0);
     const intervalMs = 5500;
 
-    // keep text in sync with autoplay timing
     React.useEffect(() => {
         const id = window.setInterval(() => {
-            setCurrentSlide((s) => (s + 1) % slides.length);
+            setCurrent((s) => (s + 1) % slides.length);
         }, intervalMs);
-
         return () => window.clearInterval(id);
     }, []);
 
-    const goPrev = () => setCurrentSlide((s) => (s - 1 + slides.length) % slides.length);
-    const goNext = () => setCurrentSlide((s) => (s + 1) % slides.length);
+    const goPrev = () => setCurrent((s) => (s - 1 + slides.length) % slides.length);
+    const goNext = () => setCurrent((s) => (s + 1) % slides.length);
+
+    const slide = slides[current];
 
     return (
-        <section className="relative w-full h-[calc(100vh-115px)]">
-            <ImagesSlider
-                images={slides.map((s) => s.image)}
-                className="h-[calc(100vh-115px)] w-full"
-                autoplay
-                interval={intervalMs}
-                overlay
-                overlayClassName="bg-black/55"
-            >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/20" />
+        <section className="relative w-full">
+            <div className="mx-auto">
+                <div className="relative h-[calc(100vh-115px)] overflow-hidden ring-1 ring-white/10 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)]">
+                    {/* FULL WIDTH IMAGE BACKGROUND */}
+                    <AnimatePresence mode="wait">
+                        <motion.img
+                            key={slide.image}
+                            src={slide.image}
+                            alt=""
+                            className="absolute inset-0 h-full w-full object-cover"
+                            initial={{ opacity: 0, scale: 1.03 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.02 }}
+                            transition={{ duration: 0.7, ease: "easeOut" }}
+                            draggable={false}
+                        />
+                    </AnimatePresence>
 
-                <div className="relative mx-auto flex h-full max-w-7xl items-center justify-center px-4">
-                    <motion.div
-                        key={currentSlide}
-                        initial={{ opacity: 0, y: 18 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="text-center"
-                    >
-                        <div className="mx-auto mb-4 flex items-center justify-center">
-                            <div className="rounded-2xl bg-black/35 p-3 backdrop-blur-md ring-1 ring-white/10">
-                                <TrendingUp className="h-6 w-6 text-[#2563eb]" />
-                            </div>
+                    {/* LEFT->RIGHT BLEND OVERLAY (dark to lighter) */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#04112b]/95 via-[#071a3a]/80 to-transparent" />
+
+                    {/* extra depth like the reference */}
+                    <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_18%_18%,rgba(59,130,246,0.28),transparent_60%)]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent" />
+
+                    {/* CONTENT (left aligned) */}
+                    <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 md:px-10">
+                        <div className="w-full max-w-xl">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={current}
+                                    initial={{ opacity: 0, y: 14 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    transition={{ duration: 0.55, ease: "easeOut" }}
+                                >
+                                    <p className="mb-3 text-sm font-medium tracking-wide text-white/60">
+                                        {slide.kicker}
+                                    </p>
+
+                                    <h1 className="text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white md:text-6xl">
+                                        {slide.title.split("\n").map((line, i) => (
+                                            <React.Fragment key={i}>
+                                                {line}
+                                                <br />
+                                            </React.Fragment>
+                                        ))}
+                                    </h1>
+
+                                    <p className="mt-5 max-w-lg whitespace-pre-line text-sm leading-relaxed text-white/75 md:text-base">
+                                        {slide.description}
+                                    </p>
+
+                                    <div className="mt-7">
+                                        <button className="inline-flex items-center justify-center rounded-xl bg-[#0ea5a4] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_-16px_rgba(14,165,164,0.9)] hover:brightness-110 active:scale-[0.99] transition">
+                                            {slide.cta}
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
+                    </div>
 
-                        <h1 className="mx-auto max-w-4xl text-balance text-4xl font-extrabold leading-tight tracking-tight text-white md:text-6xl">
-                            {slides[currentSlide].titleTop}
-                            <br />
-                            <span className="text-[#2563eb]">{slides[currentSlide].titleAccent}</span>
-                        </h1>
+                    {/* CONTROLS (bottom right like your old one) */}
+                    <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
+                        <button
+                            onClick={goPrev}
+                            aria-label="Previous slide"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/35 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-black/45 active:scale-[0.98] transition"
+                        >
+                            <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button
+                            onClick={goNext}
+                            aria-label="Next slide"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/35 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-black/45 active:scale-[0.98] transition"
+                        >
+                            <ChevronRight className="h-5 w-5" />
+                        </button>
 
-                        <p className="mx-auto mt-5 max-w-3xl text-pretty text-sm leading-relaxed text-white/85 md:text-base">
-                            {slides[currentSlide].description}
-                        </p>
-
-                        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-                            {slides[currentSlide].pills.map((pill) => (
-                                <Pill key={pill} text={pill} />
+                        <div className="ml-2 flex items-center gap-2 rounded-xl bg-black/30 px-3 py-2 ring-1 ring-white/10 backdrop-blur-md">
+                            {slides.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrent(idx)}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                    className={[
+                                        "h-2.5 rounded-full transition-all",
+                                        idx === current ? "w-7 bg-white/90" : "w-2.5 bg-white/35 hover:bg-white/55",
+                                    ].join(" ")}
+                                />
                             ))}
                         </div>
-                    </motion.div>
+                    </div>
+
+                    {/* soft border */}
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/10" />
                 </div>
-            </ImagesSlider>
+            </div>
         </section>
     );
 }

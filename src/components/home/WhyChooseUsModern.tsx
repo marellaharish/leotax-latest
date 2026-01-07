@@ -27,102 +27,100 @@ const points: Point[] = [
 ];
 
 const Pill = ({ children }: { children: React.ReactNode }) => (
-    <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-extrabold text-emerald-700 ring-1 ring-emerald-100">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+    <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-extrabold text-white/85 ring-1 ring-white/15 backdrop-blur-md">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
         {children}
     </div>
 );
 
-const PointRow = ({ p }: { p: Point }) => (
-    <div className="flex gap-4 border-t border-slate-100 py-6 first:border-t-0">
-        <div className="mt-0.5 grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-orange-500 to-rose-500 text-white shadow-[0_18px_40px_-25px_rgba(234,88,12,0.75)] ring-1 ring-white/30">
+const PointCard = ({ p }: { p: Point }) => (
+    <div className="group flex gap-4 rounded-2xl bg-white/8 p-4 ring-1 ring-white/12 backdrop-blur-md transition hover:bg-white/10">
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-indigo-600 text-white shadow-[0_18px_40px_-25px_rgba(16,185,129,0.55)] ring-1 ring-white/20">
             {p.icon}
         </div>
         <div>
-            <div className="text-sm font-extrabold text-slate-900">{p.title}</div>
-            <p className="mt-2 max-w-[56ch] text-sm leading-7 text-slate-600">{p.desc}</p>
+            <div className="text-sm font-extrabold text-white">{p.title}</div>
+            <p className="mt-1 text-sm leading-7 text-white/75">{p.desc}</p>
         </div>
     </div>
 );
 
 export default function WhyChooseUsModern() {
     return (
-        <section className="relative w-full bg-white py-16 md:py-20">
-            {/* soft gradients like your new UI */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_20%_15%,rgba(16,185,129,0.12)_0%,rgba(16,185,129,0)_60%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_85%_80%,rgba(99,102,241,0.12)_0%,rgba(99,102,241,0)_60%)]" />
+        <section className="relative w-full">
+            {/* FULL WIDTH BACKDROP */}
+            <div className="relative overflow-hidden">
+                {/* background image */}
+                <img
+                    src={WhyChooseUs1}
+                    alt="Tax experts working"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    draggable={false}
+                />
 
-            <div className="relative mx-auto grid max-w-6xl content-center items-start gap-10 px-4 md:grid-cols-2 md:gap-12">
-                {/* Left content */}
-                <div>
-                    <Pill>Why Choose Us</Pill>
+                {/* left->right blend overlay (dark to lighter) */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#04112b]/95 via-[#071a3a]/78 to-transparent" />
 
-                    <h2 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 md:text-5xl">
-                        We deliver expertise you <br className="hidden md:block" />
-                        can trust{" "}
-                        <span className="bg-gradient-to-r from-emerald-600 to-indigo-600 bg-clip-text text-transparent">
-                            through our service
-                        </span>
-                    </h2>
+                {/* extra depth */}
+                <div className="absolute inset-0 bg-[radial-gradient(900px_circle_at_18%_18%,rgba(59,130,246,0.22),transparent_60%)]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent" />
 
-                    <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 md:text-[15px]">
-                        Choosing Leo for your tax filing needs means opting for simplicity, accuracy and peace
-                        of mind. With expert assistance available every step of the way, you’ll never feel lost
-                        or confused during the process.
-                    </p>
+                {/* CONTENT */}
+                <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-20">
+                    <div className="max-w-2xl">
+                        <Pill>Why Choose Us</Pill>
 
-                    <div className="mt-7 rounded-2xl border border-slate-100 bg-white/70 px-6 py-2 shadow-[0_25px_70px_-55px_rgba(2,6,23,0.35)] backdrop-blur">
-                        {points.map((p) => (
-                            <PointRow key={p.title} p={p} />
-                        ))}
-                    </div>
+                        <h2 className="mt-4 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white md:text-6xl">
+                            We deliver expertise you can trust{" "}
+                            <span className="text-emerald-300">through our service</span>
+                        </h2>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-3">
-                        <a
-                            href="/signup"
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_35px_-22px_rgba(79,70,229,0.75)] hover:brightness-110"
-                        >
-                            Get Started
-                            <ArrowUpRight className="h-4 w-4" />
-                        </a>
-                        <a
-                            href="/contact"
-                            className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-extrabold text-slate-900 hover:bg-slate-50"
-                        >
-                            Talk to an Expert
-                        </a>
-                    </div>
-                </div>
+                        <p className="mt-5 max-w-xl whitespace-pre-line text-sm leading-7 text-white/75 md:text-[15px]">
+                            Choosing Leo for your tax filing needs means opting for simplicity, accuracy and peace of mind.
+                            With expert assistance available every step of the way, you’ll never feel lost or confused
+                            during the process.
+                        </p>
 
-                {/* Right images (modern overlapping cards) */}
-                <div className="flex h-full w-full items-center justify-center">
-                    <div className="relative ">
-                        <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-gradient-to-br from-emerald-500/10 via-indigo-500/10 to-purple-500/10 blur-2xl" />
-
-                        {/* big image */}
-                        <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_35px_110px_-85px_rgba(2,6,23,0.55)]">
-                            <img
-                                src={WhyChooseUs1}
-                                alt="Tax experts working"
-                                className="h-[340px] w-full object-cover md:h-[420px]"
-                                draggable={false}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
+                        {/* points */}
+                        <div className="mt-7 grid gap-3">
+                            {points.map((p) => (
+                                <PointCard key={p.title} p={p} />
+                            ))}
                         </div>
 
-                        {/* floating image card */}
-                        <div className="absolute -bottom-8 left-6 w-[78%] overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_30px_90px_-70px_rgba(2,6,23,0.65)] md:left-10 md:w-[72%]">
+                        {/* actions */}
+                        <div className="mt-7 flex flex-wrap items-center gap-3">
+                            <a
+                                href="/signup"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-extrabold text-white shadow-[0_18px_40px_-25px_rgba(16,185,129,0.75)] hover:brightness-110"
+                            >
+                                Get Started
+                                <ArrowUpRight className="h-4 w-4" />
+                            </a>
+
+                            <a
+                                href="/contact"
+                                className="inline-flex items-center justify-center rounded-xl bg-white/10 px-5 py-3 text-sm font-extrabold text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-white/15"
+                            >
+                                Talk to an Expert
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* floating mini image on right (optional accent) */}
+                    <div className="pointer-events-none relative mt-10 hidden md:block">
+                        <div className="absolute right-0 top-0 w-[420px] overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/15 backdrop-blur-md shadow-[0_30px_90px_-70px_rgba(2,6,23,0.8)]">
                             <img
                                 src={WhyChooseUs2}
                                 alt="Consultation"
-                                className="h-[210px] w-full object-cover md:h-[240px]"
+                                className="h-[240px] w-full object-cover opacity-95"
                                 draggable={false}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                         </div>
 
-                        {/* spacer for absolute card */}
-                        <div className="h-16 md:h-20" />
+                        {/* spacer so abs card doesn't overlap next section */}
+                        <div className="h-[260px]" />
                     </div>
                 </div>
             </div>
