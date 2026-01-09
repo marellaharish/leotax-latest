@@ -47,7 +47,7 @@ export default function ServiceHeroNoticesAuditsEnquiries() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="/signup"
+                href="/auth/signup"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-rose-600 px-5 text-sm font-extrabold text-white shadow-[0_16px_35px_-22px_rgba(244,63,94,0.60)] hover:brightness-110"
               >
                 Upload a Notice <ArrowUpRight className="h-4 w-4" />

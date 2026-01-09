@@ -7,6 +7,7 @@ import RefundStatusPage from "./pages/RefundStatusPage";
 import ContactPage from "./pages/ContactPage";
 import StateRefundListPage from "./pages/StateRefundListPage";
 import ServiceDetails from "./pages/ServiceDetails";
+import SignupPage from "./pages/SignupPage";
 
 // Import other pages as they're created 
 const ServicesPage = () => <div className="py-16 px-4 sm:px-6 lg:px-8">Our Services</div>;
@@ -23,8 +24,8 @@ export default function App() {
         <Route path="/service/:slug" element={<ServiceDetails />} />
 
 
-        <Route path="/signin" element={<h1>Sign In</h1>} />
-        <Route path="/signup" element={<h1>Sign Up</h1>} />
+        <Route path="/auth/signin" element={<h1>Sign In</h1>} />
+        <Route path="/auth/signup" element={<SignupPage />} />
 
       </Routes>
     </Router>

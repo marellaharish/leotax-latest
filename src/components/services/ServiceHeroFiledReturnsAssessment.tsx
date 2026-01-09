@@ -65,7 +65,7 @@ export default function ServiceHeroFiledReturnsAssessment() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <a
-                href="/signup"
+                href="/auth/signup"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-5 text-sm font-extrabold text-white shadow-[0_16px_35px_-22px_rgba(79,70,229,0.75)] hover:brightness-110"
               >
                 Request Review <ArrowUpRight className="h-4 w-4" />

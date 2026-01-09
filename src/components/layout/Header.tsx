@@ -275,13 +275,13 @@ const Header = () => {
                     {/* Right actions */}
                     <div className="hidden items-center gap-4 lg:flex">
                         <a
-                            href="/signin"
+                            href="/auth/signin"
                             className="text-sm font-semibold text-slate-700 hover:text-slate-900"
                         >
                             Sign In
                         </a>
                         <a
-                            href="/signup"
+                            href="/auth/signup"
                             className="rounded-xl bg-[#2563eb] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_24px_-14px_rgba(37,99,235,0.8)] hover:brightness-110"
                         >
                             Get Started
@@ -353,13 +353,13 @@ const Header = () => {
 
                             <div className="mt-2 grid gap-2">
                                 <a
-                                    href="/signin"
+                                    href="/auth/signin"
                                     className="rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-bold text-slate-800 hover:bg-slate-50"
                                 >
                                     Sign In
                                 </a>
                                 <a
-                                    href="/signup"
+                                    href="/auth/signup"
                                     className="rounded-xl bg-[#2563eb] px-4 py-3 text-center text-sm font-extrabold text-white hover:brightness-110"
                                 >
                                     Get Started

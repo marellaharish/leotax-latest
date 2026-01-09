@@ -91,7 +91,7 @@ export default function WhyChooseUsModern() {
                         {/* actions */}
                         <div className="mt-7 flex flex-wrap items-center gap-3">
                             <a
-                                href="/signup"
+                                href="/auth/signup"
                                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-extrabold text-white shadow-[0_18px_40px_-25px_rgba(16,185,129,0.75)] hover:brightness-110"
                             >
                                 Get Started

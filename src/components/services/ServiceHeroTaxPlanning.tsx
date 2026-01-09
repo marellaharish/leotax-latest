@@ -67,7 +67,7 @@ export default function ServiceHeroTaxPlanning() {
 
             <div className="mt-7">
               <a
-                href="/signup"
+                href="/auth/signup"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-extrabold text-white shadow-[0_16px_35px_-22px_rgba(16,185,129,0.65)] hover:brightness-110"
               >
                 Build My Plan <ArrowUpRight className="h-4 w-4" />
