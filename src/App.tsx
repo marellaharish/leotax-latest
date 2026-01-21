@@ -8,9 +8,28 @@ import ContactPage from "./pages/ContactPage";
 import StateRefundListPage from "./pages/StateRefundListPage";
 import ServiceDetails from "./pages/ServiceDetails";
 import SignupPage from "./pages/SignupPage";
+import SignInPage from "./pages/SignInPage";
 
-// Import other pages as they're created 
-const ServicesPage = () => <div className="py-16 px-4 sm:px-6 lg:px-8">Our Services</div>;
+function setToken(userToken: string) {
+  try {
+    localStorage.setItem("token", userToken);
+  } catch (e) {
+    console.log("Error while creating session.. " + e);
+  }
+}
+
+function getToken(): string | null {
+  try {
+    const tokenString = localStorage.getItem("token");
+    console.log(tokenString);
+    const userToken = JSON.parse(tokenString);
+    return userToken;
+  } catch (e) {
+    console.log("error :::::: " + e);
+    return null;
+  }
+}
+
 
 export default function App() {
   return (
@@ -24,8 +43,8 @@ export default function App() {
         <Route path="/service/:slug" element={<ServiceDetails />} />
 
 
-        <Route path="/auth/signin" element={<h1>Sign In</h1>} />
-        <Route path="/auth/signup" element={<SignupPage />} />
+        <Route path="/auth/signin" element={<SignInPage setToken={setToken} />} />
+        <Route path="/auth/signup" element={<SignupPage setToken={setToken} />} />
 
       </Routes>
     </Router>
