@@ -2,112 +2,144 @@
 
 import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 export type TestimonialItem = {
     quote: string;
     name: string;
     designation: string;
     src: string;
+    rating?: number; // optional (default 5)
 };
 
 export function AnimatedTestimonials({
     testimonials,
     className = "",
+    autoPlay = true,
+    intervalMs = 6500,
 }: {
     testimonials: TestimonialItem[];
     className?: string;
+    autoPlay?: boolean;
+    intervalMs?: number;
 }) {
     const [[active, direction], setActive] = React.useState<[number, number]>([0, 0]);
 
-    const paginate = (newDirection: number) => {
-        setActive(([prev]) => {
-            const next = (prev + newDirection + testimonials.length) % testimonials.length;
-            return [next, newDirection];
-        });
-    };
+    const paginate = React.useCallback(
+        (newDirection: number) => {
+            setActive(([prev]) => {
+                const next = (prev + newDirection + testimonials.length) % testimonials.length;
+                return [next, newDirection];
+            });
+        },
+        [testimonials.length]
+    );
+
+    // autoplay
+    React.useEffect(() => {
+        if (!autoPlay || testimonials.length <= 1) return;
+        const t = window.setInterval(() => paginate(1), intervalMs);
+        return () => window.clearInterval(t);
+    }, [autoPlay, intervalMs, paginate, testimonials.length]);
 
     const item = testimonials[active];
 
     return (
         <div className={`relative mx-auto w-full ${className}`}>
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_30px_80px_-60px_rgba(2,6,23,0.35)] md:p-10">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(99,102,241,0.10)_0%,rgba(99,102,241,0)_55%)]" />
+            {/* OUTER "big light-gray container" like the screenshot */}
+            <div className="rounded-3xl bg-slate-50 px-6 py-10 ring-1 ring-slate-100 md:px-10 md:py-12">
 
-                {/* arrows */}
-                <button
-                    type="button"
-                    aria-label="Previous testimonial"
-                    onClick={() => paginate(-1)}
-                    className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-slate-200 bg-white/80 p-2 text-slate-600 shadow-sm backdrop-blur hover:bg-white"
-                >
-                    ‹
-                </button>
-                <button
-                    type="button"
-                    aria-label="Next testimonial"
-                    onClick={() => paginate(1)}
-                    className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-slate-200 bg-white/80 p-2 text-slate-600 shadow-sm backdrop-blur hover:bg-white"
-                >
-                    ›
-                </button>
 
-                <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                        key={active}
-                        custom={direction}
-                        initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: -18, filter: "blur(6px)" }}
-                        transition={{ duration: 0.45, ease: "easeOut" }}
-                        className="relative z-0"
-                    >
-                        {/* stars row */}
-                        <div className="flex items-center justify-center gap-1">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                                <span key={i} className="text-yellow-400">
-                                    ★
-                                </span>
-                            ))}
-                            <span className="ml-2 text-xs font-semibold text-slate-500">5</span>
+                {/* Main layout: left identity + right quote */}
+                <div className="relative grid items-center gap-10   md:grid-cols-12">
+                    {/* LEFT */}
+                    <div className="md:col-span-4">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={`left-${active}`}
+                                initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
+                                transition={{ duration: 0.35, ease: "easeOut" }}
+                                className="flex flex-col items-center text-center"
+                            >
+                                <div className="h-28 w-28 overflow-hidden rounded-full bg-slate-200 ring-4 ring-white">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={item.src}
+                                        alt={item.name}
+                                        className="h-full w-full object-cover"
+                                        draggable={false}
+                                    />
+                                </div>
+
+                                <div className="mt-6 text-2xl font-extrabold text-slate-900 md:text-3xl">
+                                    {item.name}
+                                </div>
+
+                                <div className="mt-2 max-w-[24ch] text-base font-medium leading-7 text-slate-700 md:text-lg">
+                                    {item.designation}
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+
+                    {/* RIGHT */}
+                    <div className="md:col-span-8">
+
+                        <AnimatePresence mode="wait" custom={direction}>
+                            <motion.div
+                                key={`right-${active}`}
+                                custom={direction}
+                                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+                                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, y: -18, filter: "blur(8px)" }}
+                                transition={{ duration: 0.45, ease: "easeOut" }}
+                                className="relative"
+                            >
+                                <div className="flex items-start gap-6">
+                                    {/* quote mark block */}
+
+                                    <div className="min-w-0">
+                                        {/* stars */}
+                                        <div className="flex items-center gap-2">
+                                            {Array.from({ length: 5 }).map((_, i) => (
+                                                <Star
+                                                    key={i}
+                                                    className={`h-6 w-6 ${i < (item.rating ?? 5)
+                                                        ? "fill-indigo-600 text-indigo-600"
+                                                        : "text-slate-200"
+                                                        }`}
+                                                />
+                                            ))}
+                                        </div>
+
+                                        {/* quote */}
+                                        <p className="mt-6 text-2xl font-semibold leading-relaxed text-slate-900 text-xl md:leading-relaxed">
+                                            {item.quote}
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {/* dots */}
+                        <div className="mt-10 flex items-center justify-center gap-3">
+                            {testimonials.map((_, i) => {
+                                const isActive = i === active;
+                                return (
+                                    <button
+                                        key={i}
+                                        type="button"
+                                        aria-label={`Go to testimonial ${i + 1}`}
+                                        onClick={() => setActive([i, i > active ? 1 : -1])}
+                                        className={`h-3 w-3 rounded-full transition ${isActive ? "bg-indigo-600" : "bg-indigo-200 hover:bg-indigo-300"
+                                            }`}
+                                    />
+                                );
+                            })}
                         </div>
-
-                        <p className="mx-auto mt-5 max-w-3xl text-center text-sm leading-7 text-slate-600 md:text-[15px]">
-                            “{item.quote}”
-                        </p>
-
-                        <div className="mt-6 flex flex-col items-center justify-center gap-2">
-                            <div className="relative">
-                                <img
-                                    src={item.src}
-                                    alt={item.name}
-                                    className="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow-md"
-                                    draggable={false}
-                                />
-                                <span className="absolute -bottom-1 -right-1 grid h-5 w-5 place-items-center rounded-full bg-emerald-500 text-[10px] font-extrabold text-white ring-2 ring-white">
-                                    ✓
-                                </span>
-                            </div>
-
-                            <div className="text-center">
-                                <div className="text-sm font-extrabold text-slate-900">{item.name}</div>
-                                <div className="text-xs font-semibold text-slate-500">{item.designation}</div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </AnimatePresence>
-
-                {/* dots */}
-                <div className="mt-6 flex items-center justify-center gap-2">
-                    {testimonials.map((_, i) => (
-                        <button
-                            key={i}
-                            type="button"
-                            aria-label={`Go to testimonial ${i + 1}`}
-                            onClick={() => setActive([i, i > active ? 1 : -1])}
-                            className={`h-2.5 w-2.5 rounded-full transition ${i === active ? "bg-indigo-600" : "bg-slate-300 hover:bg-slate-400"
-                                }`}
-                        />
-                    ))}
+                    </div>
                 </div>
             </div>
         </div>

@@ -34,8 +34,8 @@ const Pill = ({ children }: { children: React.ReactNode }) => (
 );
 
 const PointCard = ({ p }: { p: Point }) => (
-    <div className="group flex gap-4 rounded-2xl bg-white/8 p-4 ring-1 ring-white/12 backdrop-blur-md transition hover:bg-white/10">
-        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-indigo-600 text-white shadow-[0_18px_40px_-25px_rgba(16,185,129,0.55)] ring-1 ring-white/20">
+    <div className="group flex gap-4 rounded-lg bg-white/8 p-4 ring-1 ring-white/12 backdrop-blur-md transition hover:bg-white/10">
+        <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-blue-600 text-white">
             {p.icon}
         </div>
         <div>
@@ -71,8 +71,7 @@ export default function WhyChooseUsModern() {
                         <Pill>Why Choose Us</Pill>
 
                         <h2 className="mt-4 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white md:text-6xl">
-                            We deliver expertise you can trust{" "}
-                            <span className="text-emerald-300">through our service</span>
+                            We deliver expertise you can trust through our service
                         </h2>
 
                         <p className="mt-5 max-w-xl whitespace-pre-line text-sm leading-7 text-white/75 md:text-[15px]">
@@ -92,7 +91,7 @@ export default function WhyChooseUsModern() {
                         <div className="mt-7 flex flex-wrap items-center gap-3">
                             <a
                                 href="/auth/signup"
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-sm font-extrabold text-white shadow-[0_18px_40px_-25px_rgba(16,185,129,0.75)] hover:brightness-110"
+                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-extrabold text-white  "
                             >
                                 Get Started
                                 <ArrowUpRight className="h-4 w-4" />

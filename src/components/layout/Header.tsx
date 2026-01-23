@@ -237,14 +237,14 @@ const Header = () => {
                             </button>
 
                             <div className="invisible absolute left-0 top-[46px] z-50 w-[400px] translate-y-2 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                                <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-xl">
+                                <div className="rounded-lg border border-slate-200 bg-white p-2 shadow-xl">
                                     {SERVICE_ITEMS.map((s, idx) => (
                                         <NavLink
                                             key={s.slug}
                                             to={`/service/${s.slug}`}
                                             className={({ isActive }) => {
                                                 const base =
-                                                    "group flex items-start gap-4 rounded-2xl px-3 py-2 transition";
+                                                    "group flex items-start gap-4 rounded-lg px-3 py-2 transition";
                                                 const active =
                                                     "bg-[#eef6ff] shadow-[inset_0_0_0_1px_rgba(37,99,235,0.18)]";
                                                 const hover = "hover:bg-slate-50";
@@ -254,7 +254,7 @@ const Header = () => {
                                             }}
                                             onClick={() => setServicesOpen(false)}
                                         >
-                                            <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#dbeafe] text-[#2563eb]">
+                                            <div className="grid h-12 w-12 place-items-center rounded-lg bg-[#dbeafe] text-[#2563eb]">
                                                 {s.icon}
                                             </div>
                                             <div className="min-w-0">
@@ -282,7 +282,7 @@ const Header = () => {
                         </a>
                         <a
                             href="/auth/signup"
-                            className="rounded-xl bg-[#2563eb] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_24px_-14px_rgba(37,99,235,0.8)] hover:brightness-110"
+                            className="rounded-lg bg-[#2563eb] px-5 py-2.5 text-sm font-bold text-white shadow-[0_10px_24px_-14px_rgba(37,99,235,0.8)] hover:brightness-110"
                         >
                             Get Started
                         </a>
@@ -332,7 +332,7 @@ const Header = () => {
                                 Contact
                             </a>
 
-                            <div className="rounded-2xl border border-slate-200 p-2">
+                            <div className="rounded-lg border border-slate-200 p-2">
                                 <div className="flex items-center gap-2 px-2 py-2 text-sm font-semibold text-slate-700">
                                     <FileText className="h-4 w-4 text-slate-500" />
                                     Services
@@ -360,7 +360,7 @@ const Header = () => {
                                 </a>
                                 <a
                                     href="/auth/signup"
-                                    className="rounded-xl bg-[#2563eb] px-4 py-3 text-center text-sm font-extrabold text-white hover:brightness-110"
+                                    className="rounded-md bg-[#2563eb] px-4 py-2 text-center text-sm font-extrabold text-white hover:brightness-110"
                                 >
                                     Get Started
                                 </a>

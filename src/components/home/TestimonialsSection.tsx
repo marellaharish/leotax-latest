@@ -74,52 +74,41 @@ const TrustChip = ({
 
 export default function TestimonialsSection() {
     return (
-        <section className="relative w-full overflow-hidden bg-white py-16 md:py-20">
-            {/* soft light gradients */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_85%_20%,rgba(99,102,241,0.12)_0%,rgba(99,102,241,0)_60%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_15%_80%,rgba(16,185,129,0.12)_0%,rgba(16,185,129,0)_60%)]" />
-
+        <section className="relative w-full overflow-hidden bg-white py-10 md:pt-20">
             <div className="relative mx-auto max-w-7xl px-4">
-                <div className="grid items-center gap-10 lg:grid-cols-12">
+                <div className=" ">
                     {/* LEFT */}
-                    <div className="lg:col-span-5">
-                        <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-4 py-2 text-[11px] font-extrabold text-indigo-700 ring-1 ring-indigo-100">
-                            <Sparkles className="h-4 w-4" />
-                            Client Success Stories
-                        </div>
+                    <div className="inline-flex items-center  text-[11px] font-extrabold text-indigo-700  ">
 
-                        <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl">
-                            Trusted by professionals <br />
-                            across the globe
-                        </h2>
-
-                        <p className="mt-4 max-w-md text-sm leading-7 text-slate-600">
-                            Real experiences from individuals and professionals who relied on
-                            LeoTaxFiling for accuracy, compliance, and peace of mind.
-                        </p>
-
-                        <div className="mt-5 flex flex-wrap gap-2">
-                            <TrustChip
-                                icon={<ShieldCheck className="h-4 w-4 text-emerald-600" />}
-                                text="Secure handling"
-                            />
-                            <TrustChip
-                                icon={<BadgeCheck className="h-4 w-4 text-indigo-600" />}
-                                text="Expert reviewed"
-                            />
-                            <TrustChip
-                                icon={<Sparkles className="h-4 w-4 text-orange-500" />}
-                                text="Simple process"
-                            />
-                        </div>
-
-
-
+                        Client Success Stories
                     </div>
 
-                    {/* RIGHT */}
-                    <div className="lg:col-span-7">
-                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_40%_25%,rgba(0,0,0,0.04),transparent_60%)]" />
+                    <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-slate-900 md:text-4xl">
+                        Trusted by professionals
+                        across the globe
+                    </h2>
+
+                    <p className="mt-4  text-sm leading-7 text-slate-600">
+                        Real experiences from individuals and professionals who relied on
+                        LeoTaxFiling for accuracy, compliance, and peace of mind.
+                    </p>
+
+                    <div className="mt-2 flex flex-wrap gap-2">
+                        <TrustChip
+                            icon={<ShieldCheck className="h-4 w-4 text-emerald-600" />}
+                            text="Secure handling"
+                        />
+                        <TrustChip
+                            icon={<BadgeCheck className="h-4 w-4 text-indigo-600" />}
+                            text="Expert reviewed"
+                        />
+                        <TrustChip
+                            icon={<Sparkles className="h-4 w-4 text-orange-500" />}
+                            text="Simple process"
+                        />
+                    </div>
+
+                    <div className="mt-4">
                         <AnimatedTestimonials testimonials={testimonials} />
                     </div>
                 </div>

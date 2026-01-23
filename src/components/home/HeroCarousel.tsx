@@ -118,7 +118,7 @@ export default function HeroCarousel() {
                     </div>
 
                     {/* CONTROLS (bottom right like your old one) */}
-                    <div className="absolute bottom-4 right-4 z-20 flex items-center gap-2">
+                    <div className="absolute bottom-10 right-[50%] translate-x-1/2 z-20 flex items-center gap-2">
                         <button
                             onClick={goPrev}
                             aria-label="Previous slide"
@@ -126,15 +126,7 @@ export default function HeroCarousel() {
                         >
                             <ChevronLeft className="h-5 w-5" />
                         </button>
-                        <button
-                            onClick={goNext}
-                            aria-label="Next slide"
-                            className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/35 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-black/45 active:scale-[0.98] transition"
-                        >
-                            <ChevronRight className="h-5 w-5" />
-                        </button>
-
-                        <div className="ml-2 flex items-center gap-2 rounded-xl bg-black/30 px-3 py-2 ring-1 ring-white/10 backdrop-blur-md">
+                        <div className="mx-2 flex items-center gap-2 rounded-xl bg-black/30 px-3 py-2 ring-1 ring-white/10 backdrop-blur-md">
                             {slides.map((_, idx) => (
                                 <button
                                     key={idx}
@@ -147,6 +139,14 @@ export default function HeroCarousel() {
                                 />
                             ))}
                         </div>
+                        <button
+                            onClick={goNext}
+                            aria-label="Next slide"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-black/35 text-white ring-1 ring-white/15 backdrop-blur-md hover:bg-black/45 active:scale-[0.98] transition"
+                        >
+                            <ChevronRight className="h-5 w-5" />
+                        </button>
+
                     </div>
 
                     {/* soft border */}

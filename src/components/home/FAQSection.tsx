@@ -38,9 +38,6 @@ export default function FAQSection() {
 
     return (
         <section className="relative w-full bg-white py-16 md:py-20">
-            {/* soft modern background like other sections */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_20%_15%,rgba(16,185,129,0.10)_0%,rgba(16,185,129,0)_60%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(45%_45%_at_85%_80%,rgba(99,102,241,0.10)_0%,rgba(99,102,241,0)_60%)]" />
 
             <div className="relative mx-auto max-w-5xl px-4">
                 <h2 className="text-center text-4xl font-extrabold tracking-tight text-slate-900 md:text-5xl">

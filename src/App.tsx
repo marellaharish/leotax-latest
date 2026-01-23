@@ -9,6 +9,7 @@ import StateRefundListPage from "./pages/StateRefundListPage";
 import ServiceDetails from "./pages/ServiceDetails";
 import SignupPage from "./pages/SignupPage";
 import SignInPage from "./pages/SignInPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function setToken(userToken: string) {
   try {
@@ -45,6 +46,8 @@ export default function App() {
 
         <Route path="/auth/signin" element={<SignInPage setToken={setToken} />} />
         <Route path="/auth/signup" element={<SignupPage setToken={setToken} />} />
+
+        <Route path="/dashboard" element={<DashboardPage />} />
 
       </Routes>
     </Router>
